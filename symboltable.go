@@ -7,8 +7,8 @@ import ("io"
 var stIdCounter=0
 type STManager struct{
     Global *SymbolTable
-    reservedWords string
-    atributtes string
+    reservedWords []string
+    attributes []Attribute
     writer io.Writer
 
 }
@@ -20,13 +20,13 @@ func CreateSTManager(writer io.Writer)STManager{
     return STManager{
         Global: createST("Global Table",nil),
         writer: writer,
+		attributes: []Attribute{},
     }
 }
 // Writes ST to the file specified
 // @st: symbol table to write to the file
 func (m *STManager) Write(st *SymbolTable){
-    fmt.Println("a")
-    fmt.Fprintf(m.writer,"%v #%d:\n\r",st.name,st.id)
+	st.Write(m.writer)
 }
 
 type SymbolTable struct{
@@ -51,8 +51,31 @@ func createST(name string,parent *SymbolTable) *SymbolTable{
 
 // Creates a new scope for the current SymbolTable.
 // The function creates a new SymbolTable and sets its to the inner field of the parent.
-func (st* SymbolTable) NewScope(name string)*SymbolTable{
-    st.inner=createST(name,st)
-    return st.inner
+func (s* SymbolTable) NewScope(name string)*SymbolTable{
+    s.inner=createST(name,s)
+    return s.inner
 }
 
+
+
+func (s* SymbolTable) AddSymbol(lex string){
+	_,err:=s.table[lex]
+	if !err{
+		return
+	}
+	s.table[lex]=NewSymbolEntry(lex)
+}
+
+func (s* SymbolTable) RemoveSybol(){
+
+}
+
+
+// Writes the SymbolTable in the Specified format for PDL.
+// @input: io.Writer 
+func (s *SymbolTable) Write(w io.Writer){
+    fmt.Fprintf(w,"%v #%d:\n\r",s.name,s.id)
+	for _,i:=range s.table{
+		i.Write(w)
+	}
+}
