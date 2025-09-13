@@ -63,5 +63,6 @@ func (s *SymbolTable) Write(w io.Writer) {
 	for _, i := range s.table {
 		i.Write(w)
 	}
+	fmt.Fprintln(w,"------------------------------------------")
 }
 

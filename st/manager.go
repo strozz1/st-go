@@ -39,7 +39,7 @@ func CreateSTManager(writer io.Writer, debugger bool) STManager {
 
 // Creates an attribute with the specified name, type & description.
 // 'AttributeType' is an int & 'AttributeDesc' is a string
-func (m *STManager) CreateAttribute(name string, t AttributeType, d string) {
+func (m *STManager) CreateAttribute(name string, d string, t AttributeType) {
 	if m.containsAttribute(name) {
 		if debug {
 			fmt.Printf("DEBUG: Can't create attribute, it already exists [%v]\n\r", name)
@@ -47,8 +47,8 @@ func (m *STManager) CreateAttribute(name string, t AttributeType, d string) {
 		}
 	}
 	m.Attributes[name] = NewAttribute(name, t, d)
-	if debug{
-		fmt.Printf("DEBUG: Created new attribute '%v' of type: '%v' & desc: '%v'\n\r",name,t,d)
+	if debug {
+		fmt.Printf("DEBUG: Created new attribute '%v' of type: '%v' & desc: '%v'\n\r", name, t, d)
 	}
 }
 
@@ -56,8 +56,8 @@ func (m *STManager) AddGlobalEntry(name string) *Entry {
 	return m.Global.AddEntry(name)
 }
 func (m *STManager) AddLocalEntry(name string) *Entry {
-	if m.Local ==nil{
-		if debug{
+	if m.Local == nil {
+		if debug {
 			fmt.Println("DEBUG: Can't add entry to a 'nil' local table.")
 			return nil
 		}
@@ -65,54 +65,53 @@ func (m *STManager) AddLocalEntry(name string) *Entry {
 	return m.Local.AddEntry(name)
 }
 
-func (m *STManager) GetGlobalEntry(name string)(*Entry,bool){
-	v,ok:=m.Global.GetEntry(name)
-	if !ok{
-		if debug{
-			fmt.Printf("DEBUG: Global entry not found '%v'\n\r",name)
-			return nil,ok
+
+
+func (m *STManager) GetGlobalEntry(name string) (*Entry, bool) {
+	v, ok := m.Global.GetEntry(name)
+	if !ok {
+		if debug {
+			fmt.Printf("DEBUG: Global entry not found '%v'\n\r", name)
+			return nil, ok
 		}
 	}
-	return v,ok
+	return v, ok
 }
-func (m *STManager) RemoveGlobalEntry(name string){
+func (m *STManager) RemoveGlobalEntry(name string) {
 	m.Global.RemoveEntry(name)
 }
 
-func (m *STManager) RemoveLocalEntry(name string){
+func (m *STManager) RemoveLocalEntry(name string) {
 	m.Global.RemoveEntry(name)
 }
 
-
-// Add entry attribute
-func (m *STManager) AddEntryAttribute(e *Entry, name string) {
+func (m *STManager) SetEntryAttribute(e *Entry, name string, val any) {
 	if !m.containsAttribute(name) {
 		if debug {
-			fmt.Printf("DEBUG: Can't add attribute to entry because attribute [%v] does not exist\n\r", name)
+			fmt.Printf("DEBUG: Can't add attribute '%v'. It does not exist\n\r", name)
 			return
 		}
 	}
-	v, _ := m.Attributes[name]
-	e.AddAtribute(name, v)
-	if debug{
-		fmt.Printf("DEBUG: Added attribute '%v' to entry '%v'\n\r",name,e.Lexeme)
+	if !e.containsAttr(name) {
+		v, _ := m.Attributes[name]
+		e.AddAtribute(name, v)
+		if debug {
+			fmt.Printf("DEBUG: Added attribute '%v' to entry '%v'\n\r", name, e.Lexeme)
+		}
+	}
+
+	e.SetAttributeValue(name, val)
+	if debug {
+		fmt.Printf("DEBUG: Setted attribute value: '%v=%v' to entry\n\r", name, val)
 	}
 }
 
-func (m *STManager) SetEntryAttrValue(e *Entry,name string,val any){
-	e.SetAttributeValue(name,val)
-	if debug{
-		fmt.Printf("DEBUG: Setted attribute value: '%v=%v' to entry\n\r",name,val)
-	}
-}
-
-
-//Create a New local table with a specified name. If there was an existing local table
+// Create a New local table with a specified name. If there was an existing local table
 // it will be removed
-func (m *STManager) CreateLocalTable(name string){
-	m.Local=createST(name)
-	if debug{
-		fmt.Printf("DEBUG: Local table created: [%v]\n\r",name)
+func (m *STManager) CreateLocalTable(name string) {
+	m.Local = createST(name)
+	if debug {
+		fmt.Printf("DEBUG: Local table created: [%v]\n\r", name)
 	}
 }
 

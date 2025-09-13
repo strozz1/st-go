@@ -56,18 +56,18 @@ func (a *Attribute) Write(w io.Writer) {
 		{
 			switch a.Type {
 			case T_INTEGER:
-				fmt.Fprintf(w, "    +%v: %v", DESC_DESPL, a.IntVal)
+				fmt.Fprintf(w, "    + %v: %v", DESC_DESPL, a.IntVal)
 			case T_STRING:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_DESPL, a.StringVal)
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_DESPL, a.StringVal)
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_DESPL)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_DESPL)
 				}
 			case T_ARRAY:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_DESPL, a.ArrayVal[0])
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_DESPL, a.ArrayVal[0])
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_DESPL)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_DESPL)
 				}
 			}
 		}
@@ -75,18 +75,18 @@ func (a *Attribute) Write(w io.Writer) {
 		{
 			switch a.Type {
 			case T_INTEGER:
-				fmt.Fprintf(w, "    +%v: %v", DESC_NUM_PARAM, a.IntVal)
+				fmt.Fprintf(w, "    + %v: %v", DESC_NUM_PARAM, a.IntVal)
 			case T_STRING:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_NUM_PARAM, a.StringVal)
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_NUM_PARAM, a.StringVal)
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_NUM_PARAM)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_NUM_PARAM)
 				}
 			case T_ARRAY:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_NUM_PARAM, a.ArrayVal[0])
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_NUM_PARAM, a.ArrayVal[0])
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_NUM_PARAM)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_NUM_PARAM)
 				}
 			}
 		}
@@ -94,20 +94,20 @@ func (a *Attribute) Write(w io.Writer) {
 		{
 			switch a.Type {
 			case T_INTEGER:
-				fmt.Fprintf(w, "    +%v: %v", DESC_TIPO_PARAM, a.IntVal)
+				fmt.Fprintf(w, "    + %v: %v", DESC_TIPO_PARAM, a.IntVal)
 			case T_STRING:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_TIPO_PARAM, a.StringVal)
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_TIPO_PARAM, a.StringVal)
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_TIPO_PARAM)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_TIPO_PARAM)
 				}
 			case T_ARRAY:
 				if a.HasValue {
 					for i := range a.ArrayVal {
-						fmt.Fprintf(w, "    +%v%v: '%v'", DESC_TIPO_PARAM, i, a.ArrayVal)
+						fmt.Fprintf(w, "    + %v%v: '%v'", DESC_TIPO_PARAM, i, a.ArrayVal)
 					}
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_TIPO_PARAM)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_TIPO_PARAM)
 				}
 			}
 		}
@@ -115,20 +115,20 @@ func (a *Attribute) Write(w io.Writer) {
 		{
 			switch a.Type {
 			case T_INTEGER:
-				fmt.Fprintf(w, "    +%v: %v", DESC_MODO_PARAM, a.IntVal)
+				fmt.Fprintf(w, "    + %v: %v", DESC_MODO_PARAM, a.IntVal)
 			case T_STRING:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_MODO_PARAM, a.StringVal)
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_MODO_PARAM, a.StringVal)
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_MODO_PARAM)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_MODO_PARAM)
 				}
 			case T_ARRAY:
 				if a.HasValue {
 					for i := range a.ArrayVal {
-						fmt.Fprintf(w, "    +%v%v: '%v'", DESC_MODO_PARAM, i, a.ArrayVal)
+						fmt.Fprintf(w, "    + %v%v: '%v'", DESC_MODO_PARAM, i, a.ArrayVal)
 					}
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_MODO_PARAM)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_MODO_PARAM)
 				}
 			}
 
@@ -137,18 +137,18 @@ func (a *Attribute) Write(w io.Writer) {
 		{
 			switch a.Type {
 			case T_INTEGER:
-				fmt.Fprintf(w, "    +%v: %v", DESC_TIPO_RETORNO, a.IntVal)
+				fmt.Fprintf(w, "    + %v: %v", DESC_TIPO_RETORNO, a.IntVal)
 			case T_STRING:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_TIPO_RETORNO, a.StringVal)
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_TIPO_RETORNO, a.StringVal)
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_TIPO_RETORNO)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_TIPO_RETORNO)
 				}
 			case T_ARRAY:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_TIPO_RETORNO, a.ArrayVal[0])
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_TIPO_RETORNO, a.ArrayVal[0])
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_TIPO_RETORNO)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_TIPO_RETORNO)
 				}
 			}
 
@@ -157,18 +157,18 @@ func (a *Attribute) Write(w io.Writer) {
 		{
 			switch a.Type {
 			case T_INTEGER:
-				fmt.Fprintf(w, "    +%v: %v", DESC_ETIQ_FUNCION, a.IntVal)
+				fmt.Fprintf(w, "    + %v: %v", DESC_ETIQ_FUNCION, a.IntVal)
 			case T_STRING:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_ETIQ_FUNCION, a.StringVal)
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_ETIQ_FUNCION, a.StringVal)
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_ETIQ_FUNCION)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_ETIQ_FUNCION)
 				}
 			case T_ARRAY:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_ETIQ_FUNCION, a.ArrayVal[0])
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_ETIQ_FUNCION, a.ArrayVal[0])
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_ETIQ_FUNCION)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_ETIQ_FUNCION)
 				}
 			}
 		}
@@ -176,40 +176,39 @@ func (a *Attribute) Write(w io.Writer) {
 		{
 			switch a.Type {
 			case T_INTEGER:
-				fmt.Fprintf(w, "    +%v: %v", DESC_PARAM, a.IntVal)
+				fmt.Fprintf(w, "    + %v: %v", DESC_PARAM, a.IntVal)
 			case T_STRING:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_PARAM, a.StringVal)
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_PARAM, a.StringVal)
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_PARAM)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_PARAM)
 				}
 			case T_ARRAY:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", DESC_PARAM, a.ArrayVal[0])
+					fmt.Fprintf(w, "    + %v: '%v'", DESC_PARAM, a.ArrayVal[0])
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", DESC_PARAM)
+					fmt.Fprintf(w, "    + %v: '-'", DESC_PARAM)
 				}
 			}
 		}
 	default:
 		{
-
 			switch a.Type {
 			case T_INTEGER:
-				fmt.Fprintf(w, "    +%v: %v", a.Desc, a.IntVal)
+				fmt.Fprintf(w, "    + %v: %v", a.Desc, a.IntVal)
 			case T_STRING:
 				if a.HasValue {
-					fmt.Fprintf(w, "    +%v: '%v'", a.Desc, a.StringVal)
+					fmt.Fprintf(w, "    + %v: '%v'", a.Desc, a.StringVal)
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", a.Desc)
+					fmt.Fprintf(w, "    + %v: '-'", a.Desc)
 				}
 			case T_ARRAY:
 				if a.HasValue {
 					for i := range a.ArrayVal {
-						fmt.Fprintf(w, "    +%v%v: '%v'", a.Desc, i, a.ArrayVal)
+						fmt.Fprintf(w, "    + %v%v: '%v'", a.Desc, i, a.ArrayVal)
 					}
 				} else {
-					fmt.Fprintf(w, "    +%v: '-'", a.Desc)
+					fmt.Fprintf(w, "    + %v: '-'", a.Desc)
 				}
 			}
 		}

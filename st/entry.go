@@ -127,7 +127,14 @@ func (e *Entry) SetAttributeValue(name string, value any) {
 
 	case T_ARRAY:
 		{
-			fmt.Printf("DEBUG: TODO. NOT YET IMPLEMENTED!")
+			v,ok:=value.([]string)
+			if !ok {
+				if debug {
+					fmt.Printf("DEBUG: Invalid value for type array: [%v]\n\r", value)
+					return
+				}
+			}
+			attribute.ArrayVal=v
 			return
 		}
 	default:
