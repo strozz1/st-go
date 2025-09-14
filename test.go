@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	mng := st.CreateSTManager(os.Stdout, true)
+	mng := st.CreateSTManager(os.Stdout, false)
 	mng.CreateAttribute("despl", st.DESC_DESPL, st.T_INTEGER)
 	mng.CreateAttribute("numero de parametros", st.DESC_NUM_PARAM, st.T_INTEGER)
 	mng.CreateAttribute("tipo de parametros", st.DESC_TIPO_PARAM, st.T_ARRAY)

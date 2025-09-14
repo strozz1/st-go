@@ -12,14 +12,14 @@ type LexemeType string
 // The 'LEXEME NONE' represents a lexeme that either hasn't been asigned yet
 // or that it doesn't have a type.
 const (
-	LEXEME_FUNCTION  = "Funcion"
-	LEXEME_PROCEDURE = "Procedimiento"
-	LEXEME_INTEGER   = "Entero"
-	LEXEME_STRING    = "Cadena"
-	LEXEME_REAL      = "Real"
-	LEXEME_LOGIC     = "Logico"
-	LEXEME_POINTER   = "Puntero"
-	LEXEME_VECTOR    = "Vector"
+	LEXEME_FUNCTION  = "funcion"
+	LEXEME_PROCEDURE = "procedimiento"
+	LEXEME_INTEGER   = "entero"
+	LEXEME_STRING    = "cadena"
+	LEXEME_REAL      = "real"
+	LEXEME_LOGIC     = "logico"
+	LEXEME_POINTER   = "puntero"
+	LEXEME_VECTOR    = "vector"
 	LEXEME_NONE      = "none"
 )
 
@@ -89,7 +89,7 @@ func (e *Entry) Write(w io.Writer) {
 		fmt.Fprintf(w, "'%v'", e.Type)
 	}
 	fmt.Fprintln(w)
-	for _,at:=range e.Attributes{
+	for _, at := range e.Attributes {
 		at.Write(w)
 	}
 
@@ -124,18 +124,16 @@ func (e *Entry) SetAttributeValue(name string, value any) {
 			attribute.IntVal = v
 			break
 		}
-
 	case T_ARRAY:
 		{
-			v,ok:=value.([]string)
+			v, ok := value.([]string)
 			if !ok {
 				if debug {
 					fmt.Printf("DEBUG: Invalid value for type array: [%v]\n\r", value)
 					return
 				}
 			}
-			attribute.ArrayVal=v
-			return
+			attribute.ArrayVal = v
 		}
 	default:
 		if debug {
